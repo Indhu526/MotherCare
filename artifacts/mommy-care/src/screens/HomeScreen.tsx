@@ -53,10 +53,17 @@ interface Props {
   lang: Lang;
   setLang: (l: Lang) => void;
   setTab: (t: Tab) => void;
+  patientData?: Record<string, string>;
 }
 
-export default function HomeScreen({ lang, setLang }: Props) {
+export default function HomeScreen({ lang, setLang, patientData }: Props) {
   const t = tx[lang] ?? tx.en;
+  const displayName = patientData?.name?.split(' ')[0]?.toLowerCase() || t.name;
+  const displayLocation = patientData?.location || t.location;
+  const displayWeek = patientData?.weeks ? `Week ${patientData.weeks}` : t.week;
+  const displayTrimester = patientData?.weeks
+    ? (parseInt(patientData.weeks) <= 13 ? (lang === 'ta' ? 'திமஸ்டர் 1' : 'Trimester 1') : parseInt(patientData.weeks) <= 26 ? (lang === 'ta' ? 'திமஸ்டர் 2' : 'Trimester 2') : (lang === 'ta' ? 'திமஸ்டர் 3' : 'Trimester 3'))
+    : t.trimester;
   const [ironDone, setIronDone] = useState(true);
   const [listening, setListening] = useState(false);
 
@@ -73,8 +80,8 @@ export default function HomeScreen({ lang, setLang }: Props) {
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
           <span style={{ color: '#aaa', fontSize: '1.3rem', marginTop: 2, lineHeight: 1 }}>⋮</span>
           <div>
-            <h1 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>{t.hello} {t.name}</h1>
-            <p style={{ margin: 0, fontSize: '0.82rem', color: '#888' }}>{t.location}</p>
+            <h1 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>{t.hello} {displayName}</h1>
+            <p style={{ margin: 0, fontSize: '0.82rem', color: '#888' }}>{displayLocation}</p>
           </div>
         </div>
         <button
@@ -141,10 +148,10 @@ export default function HomeScreen({ lang, setLang }: Props) {
             <span style={{ color: '#e91e63', fontSize: '0.85rem' }}>♡</span>
             <span style={{ fontWeight: 700, fontSize: '0.92rem', color: '#1a1a1a' }}>{t.pregnancyUpdate}</span>
           </div>
-          <p style={{ margin: 0, fontSize: '0.78rem', color: '#888' }}>{t.trimester}</p>
+          <p style={{ margin: 0, fontSize: '0.78rem', color: '#888' }}>{displayTrimester}</p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: '#e91e63' }}>{t.week}</span>
+          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: '#e91e63' }}>{displayWeek}</span>
           <span style={{ background: '#fce4ec', color: '#e91e63', borderRadius: '0.3rem', padding: '0.15rem 0.45rem', fontSize: '0.75rem', fontWeight: 700 }}>{t.weightGain}</span>
         </div>
       </div>
