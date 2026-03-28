@@ -108,9 +108,9 @@ export default function App() {
   const renderScreen = () => {
     switch (tab) {
       case 'home': return <HomeScreen lang={lang} setLang={setLang} setTab={setTab} patientData={patientData} />;
-      case 'diet': return <DietScreen lang={lang} />;
-      case 'tracker': return <TrackerScreen lang={lang} />;
-      case 'more': return <MoreScreen lang={lang} setTab={setTab} />;
+      case 'diet': return <DietScreen lang={lang} patientData={patientData} />;
+      case 'tracker': return <TrackerScreen lang={lang} patientData={patientData} />;
+      case 'more': return <MoreScreen lang={lang} setTab={setTab} patientData={patientData} />;
       case 'sos': return <SOSScreen lang={lang} />;
     }
   };
