@@ -4,9 +4,13 @@ import DietScreen from './screens/DietScreen';
 import TrackerScreen from './screens/TrackerScreen';
 import MoreScreen from './screens/MoreScreen';
 import SOSScreen from './screens/SOSScreen';
+import SplashScreen from './screens/SplashScreen';
+import AuthScreen from './screens/AuthScreen';
+import PatientFormScreen from './screens/PatientFormScreen';
 
 export type Tab = 'home' | 'diet' | 'tracker' | 'more' | 'sos';
 export type Lang = 'en' | 'ta';
+type AppView = 'splash' | 'auth' | 'form' | 'main';
 
 function HomeIcon() {
   return (
@@ -53,12 +57,57 @@ const navItems = [
 ];
 
 export default function App() {
+  const [view, setView] = useState<AppView>('splash');
   const [tab, setTab] = useState<Tab>('home');
   const [lang, setLang] = useState<Lang>('en');
+  const [patientData, setPatientData] = useState<Record<string, string>>({});
 
+  const handleFormDone = (data: Record<string, string>) => {
+    setPatientData(data);
+    setView('main');
+  };
+
+  // Pre-main screens (no bottom nav)
+  if (view === 'splash') {
+    return (
+      <div className="app-shell">
+        <div className="screen-content">
+          <SplashScreen lang={lang} setLang={setLang} onNext={() => setView('auth')} />
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'auth') {
+    return (
+      <div className="app-shell">
+        <div className="screen-content">
+          <AuthScreen
+            lang={lang}
+            setLang={setLang}
+            onRegister={() => setView('form')}
+            onLogin={() => setView('main')}
+            onBack={() => setView('splash')}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'form') {
+    return (
+      <div className="app-shell">
+        <div className="screen-content">
+          <PatientFormScreen lang={lang} onBack={() => setView('auth')} onDone={handleFormDone} />
+        </div>
+      </div>
+    );
+  }
+
+  // Main app with bottom nav
   const renderScreen = () => {
     switch (tab) {
-      case 'home': return <HomeScreen lang={lang} setLang={setLang} setTab={setTab} />;
+      case 'home': return <HomeScreen lang={lang} setLang={setLang} setTab={setTab} patientData={patientData} />;
       case 'diet': return <DietScreen lang={lang} />;
       case 'tracker': return <TrackerScreen lang={lang} />;
       case 'more': return <MoreScreen lang={lang} setTab={setTab} />;
