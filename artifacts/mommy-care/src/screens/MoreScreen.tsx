@@ -108,9 +108,9 @@ const tx = {
   },
 };
 
-interface Props { lang: Lang; setTab: (t: Tab) => void; }
+interface Props { lang: Lang; setTab: (t: Tab) => void; patientData?: Record<string, string>; }
 
-export default function MoreScreen({ lang, setTab }: Props) {
+export default function MoreScreen({ lang, setTab, patientData }: Props) {
   const t = tx[lang] ?? tx.en;
   const [view, setView] = useState<string | null>(null);
   const [selected, setSelected] = useState<number[]>([]);
