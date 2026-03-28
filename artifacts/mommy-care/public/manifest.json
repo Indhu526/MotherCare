@@ -1,0 +1,16 @@
+{
+  "name": "MommyCare",
+  "short_name": "MommyCare",
+  "description": "Maternal health app for pregnant women in Tamil Nadu",
+  "theme_color": "#C2185B",
+  "background_color": "#fff5f7",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
