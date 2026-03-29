@@ -193,8 +193,23 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
       </div>
 
       {/* Banner */}
-      <div style={{ flex: 1, background: 'linear-gradient(135deg, #c2185b, #e91e63, #ad1457)', borderRadius: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0 }}>
-        <p style={{ margin: 0, fontWeight: 800, fontSize: '0.9rem', color: 'white', textAlign: 'center', letterSpacing: '0.02em', lineHeight: 1.5 }}>{t.banner}</p>
+      <div style={{ flex: 1, borderRadius: '0.85rem', minHeight: 0, position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1e40af 100%)' }}>
+        {/* Decorative circles */}
+        <div style={{ position: 'absolute', top: -18, right: -18, width: 70, height: 70, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -12, left: -12, width: 55, height: 55, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.08)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '50%', right: 14, transform: 'translateY(-50%)', opacity: 0.12, pointerEvents: 'none' }}>
+          <svg width="38" height="38" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="24" stroke="white" strokeWidth="1.5"/><line x1="26" y1="10" x2="26" y2="42" stroke="white" strokeWidth="2"/><line x1="10" y1="26" x2="42" y2="26" stroke="white" strokeWidth="2"/></svg>
+        </div>
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 1.25rem', gap: '0.2rem' }}>
+          <div style={{ display: 'flex', gap: '0.3rem', marginBottom: '0.1rem' }}>
+            {[0,1,2].map(i => <svg key={i} width="6" height="6" viewBox="0 0 10 10" fill="rgba(255,255,255,0.45)"><path d="M5 0l1.5 3H10l-2.5 2 1 3L5 6.5 1.5 8l1-3L0 3h3.5z"/></svg>)}
+          </div>
+          <p style={{ margin: 0, fontWeight: 700, fontSize: '0.88rem', color: 'white', letterSpacing: '0.03em', lineHeight: 1.55, fontFamily: 'Georgia, serif' }}>
+            {lang === 'ta' ? 'ஒவ்வொரு தட்டிலும்\nதாய்மாரை மேம்படுத்துகிறோம்' : 'Empowering mothers\nwith every tap'}
+          </p>
+          <p style={{ margin: 0, fontSize: '0.62rem', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>MotherCare+</p>
+        </div>
       </div>
 
       {/* ── ANC Calendar Modal ─────────────────────────── */}

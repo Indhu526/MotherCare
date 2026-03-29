@@ -86,7 +86,10 @@ export default function App() {
             lang={lang}
             setLang={setLang}
             onRegister={() => setView('form')}
-            onLogin={() => setView('main')}
+            onLogin={(data) => {
+              setPatientData({ name: data.name, phone: data.phone, weeks: '14', blood: '–', location: '–' });
+              setView('main');
+            }}
             onBack={() => setView('splash')}
           />
         </div>

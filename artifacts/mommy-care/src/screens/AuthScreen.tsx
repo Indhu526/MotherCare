@@ -63,7 +63,7 @@ interface Props {
   lang: Lang;
   setLang: (l: Lang) => void;
   onRegister: () => void;
-  onLogin: () => void;
+  onLogin: (data: { name: string; phone: string }) => void;
   onBack: () => void;
 }
 
@@ -126,7 +126,7 @@ export default function AuthScreen({ lang, setLang, onRegister, onLogin, onBack 
           </div>
 
           <button
-            onClick={() => canSignIn && onLogin()}
+            onClick={() => canSignIn && onLogin({ name: name.trim(), phone })}
             style={{ width: '100%', padding: '0.95rem', borderRadius: '0.65rem', border: 'none', background: canSignIn ? 'linear-gradient(135deg, #b91c1c, #c2185b)' : '#f0f0f0', color: canSignIn ? 'white' : '#aaa', fontSize: '0.9rem', fontWeight: 700, cursor: canSignIn ? 'pointer' : 'not-allowed', letterSpacing: '0.06em', textTransform: 'uppercase', boxShadow: canSignIn ? '0 4px 16px rgba(185,28,28,0.25)' : 'none', transition: 'all 0.2s' }}
           >
             {t.signIn}
