@@ -120,11 +120,17 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-          <button onClick={() => openMenu('main')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', fontSize: '1.2rem', padding: '0 0.1rem', lineHeight: 1 }}>⋮</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+          {/* Three-dot menu — larger & notable */}
+          <button onClick={() => openMenu('main')} style={{ background: '#1a1a1a', border: 'none', cursor: 'pointer', borderRadius: '0.5rem', width: 36, height: 36, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '3.5px', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
+            {[0,1,2].map(i => <span key={i} style={{ width: 4, height: 4, borderRadius: '50%', background: 'white', display: 'block' }} />)}
+          </button>
           <div>
-            <h1 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1a1a1a', margin: 0, lineHeight: 1.1 }}>{t.hello} {displayName}</h1>
-            <p style={{ margin: 0, fontSize: '0.7rem', color: '#888' }}>{displayLocation}</p>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.28rem', lineHeight: 1.1 }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#888' }}>{t.hello}</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#b91c1c', textTransform: 'capitalize', letterSpacing: '-0.01em' }}>{displayName}</span>
+            </div>
+            <p style={{ margin: 0, fontSize: '0.65rem', color: '#aaa', letterSpacing: '0.01em' }}>{displayLocation}</p>
           </div>
         </div>
         <button className="lang-btn" onClick={() => setLang(lang === 'en' ? 'ta' : 'en')} style={{ fontSize: '0.72rem', padding: '0.25rem 0.55rem' }}>
@@ -171,10 +177,11 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
           <span style={{ color: '#ccc', fontSize: '1rem' }}>›</span>
         </div>
 
-        {/* ANC Calendar link */}
-        <div onClick={() => setShowCal(true)} style={{ border: '1.5px dashed #e91e63', borderRadius: '0.5rem', padding: '0.35rem 0.65rem', marginTop: '0.4rem', textAlign: 'center', cursor: 'pointer' }}>
-          <span style={{ color: '#e91e63', fontSize: '0.72rem', fontWeight: 600 }}>{t.viewCalendar}</span>
-        </div>
+        {/* ANC Calendar button — prominent */}
+        <button onClick={() => setShowCal(true)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #7f1d1d, #b91c1c)', border: 'none', borderRadius: '0.6rem', padding: '0.55rem 0.75rem', marginTop: '0.45rem', cursor: 'pointer', boxShadow: '0 3px 10px rgba(185,28,28,0.28)' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span style={{ color: 'white', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.02em' }}>{t.viewCalendar}</span>
+        </button>
       </div>
 
       {/* Pregnancy Update */}
@@ -192,8 +199,8 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
         </div>
       </div>
 
-      {/* Banner */}
-      <div style={{ flex: 1, borderRadius: '0.85rem', minHeight: 0, position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1e40af 100%)' }}>
+      {/* Banner — smaller caption box */}
+      <div style={{ flex: '0 0 54px', borderRadius: '0.85rem', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1e40af 100%)' }}>
         {/* Decorative circles */}
         <div style={{ position: 'absolute', top: -18, right: -18, width: 70, height: 70, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -12, left: -12, width: 55, height: 55, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.08)', pointerEvents: 'none' }} />
