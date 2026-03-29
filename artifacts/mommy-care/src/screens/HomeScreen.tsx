@@ -126,11 +126,19 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
             {[0,1,2].map(i => <span key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#1a1a1a', display: 'block' }} />)}
           </button>
           <div>
-            <div style={{ lineHeight: 1.15 }}>
-              <span style={{ fontSize: '1.35rem', fontWeight: 900, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#1a1a1a', letterSpacing: '-0.01em' }}>{t.hello} </span>
-              <span style={{ fontSize: '1.35rem', fontWeight: 900, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#b91c1c', textTransform: 'capitalize', letterSpacing: '-0.01em' }}>{displayName}</span>
+            {/* Sparkle row above */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', marginBottom: '0.05rem' }}>
+              <span style={{ fontSize: '0.7rem', lineHeight: 1 }}>✨</span>
+              <span style={{ fontSize: '0.5rem', color: '#e91e63', lineHeight: 1 }}>✦</span>
+              <span style={{ fontSize: '0.55rem', color: '#b91c1c', lineHeight: 1 }}>★</span>
             </div>
-            <p style={{ margin: 0, fontSize: '0.65rem', color: '#aaa', letterSpacing: '0.01em' }}>{displayLocation}</p>
+            {/* Greeting line */}
+            <div style={{ lineHeight: 1.05, display: 'flex', alignItems: 'baseline', gap: '0.3rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '1.7rem', fontWeight: 700, fontFamily: "'Dancing Script', cursive", color: '#555', letterSpacing: '0.01em' }}>{t.hello}</span>
+              <span style={{ fontSize: '2rem', fontWeight: 700, fontFamily: "'Dancing Script', cursive", color: '#b91c1c', textTransform: 'capitalize', letterSpacing: '0.02em', textShadow: '0 2px 8px rgba(185,28,28,0.18)' }}>{displayName}</span>
+              <span style={{ fontSize: '1rem', lineHeight: 1 }}>✨</span>
+            </div>
+            <p style={{ margin: '0.1rem 0 0', fontSize: '0.62rem', color: '#aaa', letterSpacing: '0.02em' }}>{displayLocation}</p>
           </div>
         </div>
         <button className="lang-btn" onClick={() => setLang(lang === 'en' ? 'ta' : 'en')} style={{ fontSize: '0.72rem', padding: '0.25rem 0.55rem' }}>
