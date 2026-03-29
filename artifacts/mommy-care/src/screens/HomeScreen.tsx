@@ -121,14 +121,14 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-          {/* Three-dot menu — larger & notable */}
-          <button onClick={() => openMenu('main')} style={{ background: '#1a1a1a', border: 'none', cursor: 'pointer', borderRadius: '0.5rem', width: 36, height: 36, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '3.5px', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
-            {[0,1,2].map(i => <span key={i} style={{ width: 4, height: 4, borderRadius: '50%', background: 'white', display: 'block' }} />)}
+          {/* Three-dot menu — no box, black dots only */}
+          <button onClick={() => openMenu('main')} style={{ background: 'none', border: 'none', cursor: 'pointer', width: 32, height: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', flexShrink: 0, padding: 0 }}>
+            {[0,1,2].map(i => <span key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#1a1a1a', display: 'block' }} />)}
           </button>
           <div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.28rem', lineHeight: 1.1 }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#888' }}>{t.hello}</span>
-              <span style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#b91c1c', textTransform: 'capitalize', letterSpacing: '-0.01em' }}>{displayName}</span>
+            <div style={{ lineHeight: 1.15 }}>
+              <span style={{ fontSize: '1.35rem', fontWeight: 900, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#1a1a1a', letterSpacing: '-0.01em' }}>{t.hello} </span>
+              <span style={{ fontSize: '1.35rem', fontWeight: 900, fontFamily: 'Georgia, serif', fontStyle: 'italic', color: '#b91c1c', textTransform: 'capitalize', letterSpacing: '-0.01em' }}>{displayName}</span>
             </div>
             <p style={{ margin: 0, fontSize: '0.65rem', color: '#aaa', letterSpacing: '0.01em' }}>{displayLocation}</p>
           </div>
@@ -199,24 +199,34 @@ export default function HomeScreen({ lang, setLang, patientData }: Props) {
         </div>
       </div>
 
-      {/* Banner — smaller caption box */}
-      <div style={{ flex: '0 0 54px', borderRadius: '0.85rem', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1e40af 100%)' }}>
-        {/* Decorative circles */}
-        <div style={{ position: 'absolute', top: -18, right: -18, width: 70, height: 70, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.1)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: -12, left: -12, width: 55, height: 55, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.08)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: '50%', right: 14, transform: 'translateY(-50%)', opacity: 0.12, pointerEvents: 'none' }}>
-          <svg width="38" height="38" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="24" stroke="white" strokeWidth="1.5"/><line x1="26" y1="10" x2="26" y2="42" stroke="white" strokeWidth="2"/><line x1="10" y1="26" x2="42" y2="26" stroke="white" strokeWidth="2"/></svg>
+      {/* Banner — compact caption strip */}
+      <div style={{ flex: '0 0 50px', borderRadius: '0.75rem', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1e40af 100%)' }}>
+        <div style={{ position: 'absolute', top: -16, right: -16, width: 60, height: 60, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.1)' }} />
+        <div style={{ position: 'absolute', top: '50%', right: 14, transform: 'translateY(-50%)', opacity: 0.12 }}>
+          <svg width="32" height="32" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="24" stroke="white" strokeWidth="1.5"/><line x1="26" y1="10" x2="26" y2="42" stroke="white" strokeWidth="2"/><line x1="10" y1="26" x2="42" y2="26" stroke="white" strokeWidth="2"/></svg>
         </div>
-        {/* Content */}
-        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 1.25rem', gap: '0.2rem' }}>
-          <div style={{ display: 'flex', gap: '0.3rem', marginBottom: '0.1rem' }}>
-            {[0,1,2].map(i => <svg key={i} width="6" height="6" viewBox="0 0 10 10" fill="rgba(255,255,255,0.45)"><path d="M5 0l1.5 3H10l-2.5 2 1 3L5 6.5 1.5 8l1-3L0 3h3.5z"/></svg>)}
+        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.25rem' }}>
+            {[0,1,2].map(i => <svg key={i} width="5" height="5" viewBox="0 0 10 10" fill="rgba(255,255,255,0.5)"><path d="M5 0l1.5 3H10l-2.5 2 1 3L5 6.5 1.5 8l1-3L0 3h3.5z"/></svg>)}
           </div>
-          <p style={{ margin: 0, fontWeight: 700, fontSize: '0.88rem', color: 'white', letterSpacing: '0.03em', lineHeight: 1.55, fontFamily: 'Georgia, serif' }}>
-            {lang === 'ta' ? 'ஒவ்வொரு தட்டிலும்\nதாய்மாரை மேம்படுத்துகிறோம்' : 'Empowering mothers\nwith every tap'}
+          <p style={{ margin: 0, fontWeight: 700, fontSize: '0.8rem', color: 'white', fontFamily: 'Georgia, serif', letterSpacing: '0.02em' }}>
+            {lang === 'ta' ? 'ஒவ்வொரு தட்டிலும் தாய்மாரை மேம்படுத்துகிறோம்' : 'Empowering mothers with every tap'}
           </p>
-          <p style={{ margin: 0, fontSize: '0.62rem', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>MotherCare+</p>
+          <div style={{ display: 'flex', gap: '0.25rem' }}>
+            {[0,1,2].map(i => <svg key={i} width="5" height="5" viewBox="0 0 10 10" fill="rgba(255,255,255,0.5)"><path d="M5 0l1.5 3H10l-2.5 2 1 3L5 6.5 1.5 8l1-3L0 3h3.5z"/></svg>)}
+          </div>
         </div>
+      </div>
+
+      {/* Mother & Baby Photo — fills remaining space */}
+      <div style={{ flex: 1, borderRadius: '0.85rem', overflow: 'hidden', minHeight: 0, position: 'relative' }}>
+        <img
+          src="/mother-baby.png"
+          alt="Mother with baby"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }}
+        />
+        {/* Subtle overlay for elegance */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,23,42,0.18) 0%, transparent 50%)', pointerEvents: 'none', borderRadius: '0.85rem' }} />
       </div>
 
       {/* ── ANC Calendar Modal ─────────────────────────── */}
