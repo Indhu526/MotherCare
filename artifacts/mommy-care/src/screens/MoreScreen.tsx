@@ -208,16 +208,24 @@ export default function MoreScreen({ lang, setTab, patientData }: Props) {
 
   // Contacts view
   if (view === 'contacts') {
+    const husbandName = patientData?.husband || (lang === 'ta' ? 'கணவர்' : 'Husband');
+    const husbandNum = patientData?.emergency || (lang === 'ta' ? 'பதிவு செய்யப்படவில்லை' : 'Not registered');
+    const dynamicContacts = [
+      { name: lang === 'ta' ? 'அவசர ஆம்புலன்ஸ்' : 'Emergency Ambulance', num: '108', emoji: '🚑', bg: '#fee2e2' },
+      { name: `${husbandName} (${lang === 'ta' ? 'கணவர்' : 'Husband'})`, num: husbandNum, emoji: '👨', bg: '#e8f5e9' },
+      { name: lang === 'ta' ? 'ASHA / சுகாதார ஊழியர்' : 'ASHA / Health Staff', num: '9876543210', emoji: '👩‍⚕️', bg: '#e3f2fd' },
+      { name: lang === 'ta' ? 'சுகாதார உதவி' : 'Health Helpline', num: '104', emoji: '🏥', bg: '#fce4ec' },
+    ];
     return (
       <div className="fadeIn" style={{ padding: '1.25rem 1rem', background: '#f5f0e8', minHeight: '100%' }}>
         <Back />
         <h1 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1a1a1a', margin: '0 0 1rem' }}>{t.contactsTitle}</h1>
-        {t.contacts.map((c, i) => (
+        {dynamicContacts.map((c, i) => (
           <a key={i} href={`tel:${c.num}`} className="card" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', marginBottom: '0.6rem', cursor: 'pointer' }}>
-            <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', flexShrink: 0 }}>{c.emoji}</div>
+            <div style={{ width: 48, height: 48, borderRadius: '50%', background: c.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', flexShrink: 0 }}>{c.emoji}</div>
             <div style={{ flex: 1 }}>
               <p style={{ margin: 0, fontWeight: 700, fontSize: '0.92rem', color: '#1a1a1a' }}>{c.name}</p>
-              <p style={{ margin: '0.15rem 0 0', fontWeight: 800, fontSize: '1.1rem', color: '#b91c1c' }}>{c.num}</p>
+              <p style={{ margin: '0.15rem 0 0', fontWeight: 800, fontSize: '1.05rem', color: '#b91c1c' }}>{c.num}</p>
             </div>
             <span style={{ fontSize: '1.1rem' }}>📞</span>
           </a>
