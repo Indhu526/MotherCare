@@ -169,7 +169,7 @@ export default function AuthScreen({ lang, setLang, onRegister, onLogin, onBack 
           <svg width="10" height="10" viewBox="0 0 10 10" fill="#b91c1c"><path d="M5 0l1.5 3H10l-2.5 2 1 3L5 6.5 1.5 8l1-3L0 3h3.5z"/></svg>
           <div style={{ height: 1, width: 40, background: '#e8e8e8' }} />
         </div>
-        <p style={{ margin: 0, fontSize: '0.78rem', color: '#999', lineHeight: 1.55, maxWidth: 260, margin: '0 auto' }}>{t.sub}</p>
+        <p style={{  fontSize: '0.78rem', color: '#999', lineHeight: 1.55, maxWidth: 260, margin: '0 auto' }}>{t.sub}</p>
       </div>
 
       {/* Buttons */}
